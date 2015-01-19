@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Content.Data\Content.Data.csproj">
+      <Project>{57478dca-1fec-4115-b827-1c7977343bd9}</Project>
+      <Name>Content.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Content.Manipulation\Content.Manipulation.csproj">
       <Project>{b3a3a9ac-f22b-4f5c-b88a-75a00b622d50}</Project>
       <Name>Content.Manipulation</Name>

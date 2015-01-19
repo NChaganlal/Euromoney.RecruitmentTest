@@ -47,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NegativeWordScannerTest.cs" />
+    <Compile Include="Content.Data\NegativeWordRepositoryTest.cs" />
+    <Compile Include="Content.Manipulation\NegativeWordScannerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataFactory.cs" />
   </ItemGroup>
@@ -55,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Content.Data\Content.Data.csproj">
+      <Project>{57478dca-1fec-4115-b827-1c7977343bd9}</Project>
+      <Name>Content.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Content.Manipulation\Content.Manipulation.csproj">
       <Project>{b3a3a9ac-f22b-4f5c-b88a-75a00b622d50}</Project>
       <Name>Content.Manipulation</Name>
