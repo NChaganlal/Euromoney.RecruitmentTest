@@ -1,42 +1,53 @@
 ﻿using System;
+using Content.Manipulation;
 
 namespace ContentConsole
 {
     public static class Program
     {
+        private static readonly INegativeWordScanner NegativeWordScanner = new NegativeWordScanner();
+
         public static void Main(string[] args)
         {
-            string bannedWord1 = "swine";
-            string bannedWord2 = "bad";
-            string bannedWord3 = "nasty";
-            string bannedWord4 = "horrible";
+            MainMenu();   
+        }
 
-            string content =
-                "The weather in Manchester in winter is bad. It rains all the time - it must be horrible for people visiting.";
+        private static void MainMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Roles available:");
+                Console.WriteLine("1 - user");
+                Console.WriteLine("Type 'exit' to quit");
+                Console.WriteLine("What is your role?");
+                var role = Console.ReadLine();
 
-            int badWords = 0;
-            if (content.Contains(bannedWord1))
-            {
-                badWords = badWords + 1;
+                switch (role)
+                {
+                    case "1":
+                        UserScreen();
+                        break;
+                    case "exit":
+                        Console.WriteLine("You typed exit! Goodbye!");
+                        Console.ReadKey();
+                        return;
+                    default:
+                        Console.WriteLine("The options at this stage are: 1 and exit");
+                        break;
+                }
             }
-            if (content.Contains(bannedWord2))
-            {
-                badWords = badWords + 1;
-            }
-            if (content.Contains(bannedWord3))
-            {
-                badWords = badWords + 1;
-            }
-            if (content.Contains(bannedWord4))
-            {
-                badWords = badWords + 1;
-            }
+        }
 
-            Console.WriteLine("Scanned the text:");
+        private static void UserScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome User!");
+            Console.WriteLine("Text to scan:");
+            var content = Console.ReadLine();
+            Console.WriteLine("Scanned the text: ");
             Console.WriteLine(content);
-            Console.WriteLine("Total Number of negative words: " + badWords);
-
-            Console.WriteLine("Press ANY key to exit.");
+            Console.WriteLine("Total Number of negative words: " + NegativeWordScanner.CountNegativeWords(content));
             Console.ReadKey();
         }
     }
