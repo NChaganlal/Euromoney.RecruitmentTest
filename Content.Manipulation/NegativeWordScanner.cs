@@ -26,7 +26,10 @@ namespace Content.Manipulation
 
                 if (negativeWordList != null && negativeWordList.Any())
                 {
-                    return contentToScan.Split(' ', '.').Count(w => negativeWordList.Contains(w));
+                    return negativeWordList
+                        .Select(negativeWord => @"\b" + negativeWord + @"\b")
+                        .Select(pattern => Regex.Matches(contentToScan, pattern).Count)
+                        .Sum();
                 }
             }
             return 0;
