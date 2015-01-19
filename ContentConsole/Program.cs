@@ -24,6 +24,7 @@ namespace ContentConsole
                 Console.WriteLine("Roles available:");
                 Console.WriteLine("1 - user");
                 Console.WriteLine("2 - admin");
+                Console.WriteLine("3 - reader");
                 Console.WriteLine("Type 'exit' to quit");
                 Console.WriteLine("What is your role?");
                 var role = Console.ReadLine();
@@ -35,6 +36,9 @@ namespace ContentConsole
                         break;
                     case "2":
                         AdminScreen();
+                        break;
+                    case "3":
+                        ReaderScreen();
                         break;
                     case "exit":
                         Console.WriteLine("You typed exit! Goodbye!");
@@ -75,7 +79,7 @@ namespace ContentConsole
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("Enter new bad words:");
+                    Console.WriteLine("Enter new bad words separated by spaces:");
                     var newBadWords = Console.ReadLine() ?? string.Empty;
                     NegativeWordRepository.SaveNegativeWords(newBadWords.Split(' ').ToList());
                     Console.WriteLine("New words have been saved!");
@@ -87,6 +91,18 @@ namespace ContentConsole
                     Console.WriteLine("The options at this stage are: 1,2");
                     break;
             }
+        }
+
+        private static void ReaderScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome Reader!");
+            Console.WriteLine("Text to scan:");
+            var content = Console.ReadLine();
+            Console.WriteLine("Scanned the text: ");
+            Console.WriteLine(NegativeWordScanner.FilterNegativeWordsFromContent(content));
+            Console.WriteLine("Total Number of negative words: " + NegativeWordScanner.CountNegativeWords(content));
+            Console.ReadKey();
         }
     }
 
